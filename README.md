@@ -85,3 +85,13 @@ npm run hardhat:deploy -- --network localhost
 ```
 
 After deploying the contracts, it is crucial to finalize the setup by calling the `setRouter` function in the `ECDSAVerifier` contract. This step establishes the address of the newly deployed `Router` contract as the primary one.
+
+#### Run unit tests
+
+This template includes a predefined command for running unit tests, even though it does not contain any unit tests by default.
+
+To run the unit tests, use the following command:
+
+```bash
+npm run hardhat:test
+```

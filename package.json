@@ -4,6 +4,7 @@
     "hardhat:compile": "npx hardhat compile",
     "hardhat:ignition": "npx hardhat ignition deploy ./ignition/modules/Equito.ts",
     "hardhat:deploy": "npx hardhat run ./scripts/deploy.ts",
+    "hardhat:test": "npx hardhat test",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix"
   },
