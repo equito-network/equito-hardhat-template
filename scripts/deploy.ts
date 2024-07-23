@@ -1,6 +1,8 @@
 import hre from "hardhat";
 import Equito from "../ignition/modules/Equito";
 import { ethers } from "hardhat";
+import * as dotenv from "dotenv";
+dotenv.config();
 
 function addressToBytes64(addr: string) {
   return {

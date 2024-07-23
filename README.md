@@ -3,6 +3,7 @@
 Welcome to the Equito Hardhat Template! This project is pre-configured for Equito EVM smart contract development and deployment using Hardhat. It also includes contracts from the [equito-evm-contracts](https://github.com/equito-network/equito-evm-contracts) repository. If you're looking to use Hardhat as a framework to build and deploy your smart contracts, this template repository offers a robust foundation to get started quickly. Fork this template, create new files in the `contracts/` folder, and start building your smart contracts right away!
 
 ### Project structure
+
 - **contracts/**: Contains Solidity smart contracts.
 - **test/**: Contains test scripts for contracts.
 - **artifacts/**: Contains compiled contract artifacts.
@@ -11,13 +12,17 @@ Welcome to the Equito Hardhat Template! This project is pre-configured for Equit
 - **lib/**: Additional libraries or dependencies.
 
 ### Prerequisites
+
 Before you begin, ensure you have the following installed:
+
 - [Node.js](https://nodejs.org/en) (version 18.15.0 or higher)
 - [npm](https://www.npmjs.com) (Node Package Manager)
 - [Hardhat](https://hardhat.org) (globally or locally installed)
 
 ### Installation
+
 #### Create a new repository
+
 1. In the current repository, click the `Use this template` button.
 2. In the dropdown list, choose `Create a new repository`.
 3. Choose a new repository name, for example, `equito-ping-pong-hardhat`.
@@ -36,7 +41,7 @@ npm install
 Create a `.env` file in the root directory and add the following variables:
 
 ```makefile
-# Accounts
+# Addresses: Addresses are case sensitive and use proper checksum encoded addresses.
 # PRIVATE_KEY is used as the contract deployer key.
 PRIVATE_KEY=<your_private_key>
 
@@ -58,6 +63,7 @@ CHAIN_SELECTOR=<chain_selector>
 ```
 
 ### Usage
+
 This Hardhat project provides essential commands to streamline and enhance your development workflow.
 
 #### Compile contracts
@@ -66,14 +72,6 @@ Compile your smart contracts with the following command:
 
 ```bash
 npm run hardhat:compile
-```
-
-#### Deploy contracts using Hardhat Ignition
-
-Deploy your contracts using Hardhat Ignition:
-
-```bash
-npm run hardhat:ignition -- --network localhost
 ```
 
 #### Deploy contracts using prepared scripts
