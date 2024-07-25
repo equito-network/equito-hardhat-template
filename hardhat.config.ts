@@ -14,6 +14,10 @@ const config: HardhatUserConfig = {
       },
     },
   },
+  typechain: {
+    outDir: "typechain",
+    target: "ethers-v5",
+  },
   networks: {
     localhost: {
       url: `http://127.0.0.1:${process.env.RPC_PORT || "8545"}`,
