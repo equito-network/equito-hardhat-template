@@ -84,14 +84,13 @@ Update the configuration file `equito.json` in the `config` directory with the p
   "peers": [
     {
       "chainId": 1001,
-      "address": "0xbDA5747bFD65F08deb54cb465eB87D40e51B197E"
+      "address": "0x<your-contract-address-here>"
     },
     {
       "chainId": 1002,
-      "address": "0xdD2FD4581271e230360230F9337D5c0430Bf44C0"
+      "address": "0x<your-contract-address-here>"
     }
-  ],
-  "user_contract_address": ""
+  ]
 }
 ```
 

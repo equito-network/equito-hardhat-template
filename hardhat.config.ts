@@ -16,7 +16,7 @@ const config: HardhatUserConfig = {
   },
   typechain: {
     outDir: "typechain",
-    target: "ethers-v5",
+    target: "ethers-v6",
   },
   networks: {
     localhost: {
@@ -43,6 +43,8 @@ const config: HardhatUserConfig = {
       "lib/equito/src/ECDSAVerifier.sol",
       "lib/equito/src/Router.sol",
       "lib/equito/test/mock/MockOracle.sol",
+      "lib/equito/test/mock/MockEquitoFees.sol",
+      "lib/equito/test/mock/MockVerifier.sol",
     ],
   },
 };

@@ -2,22 +2,11 @@ import { ethers } from "hardhat";
 import * as dotenv from "dotenv";
 import * as path from "path";
 import * as fs from "fs";
-
+import hre from "hardhat";
+import { addressToBytes64 } from "../utils/bytes64";
+import { Peer } from "../utils/util";
 // Load env
 dotenv.config({ path: path.join(__dirname, "../.env") });
-
-// get bytes64 data from evm address
-function addressToBytes64(addr: string) {
-  return {
-    lower: ethers.zeroPadBytes(addr, 32),
-    upper: ethers.ZeroHash,
-  };
-}
-
-interface Peer {
-  chainId: number;
-  address: string;
-}
 
 /**
  * Sets the peers specified in the config file, equito.json, at the contract address
@@ -28,23 +17,40 @@ async function main() {
   const configPath = path.join(__dirname, "../config/equito.json");
   const rawData = fs.readFileSync(configPath, "utf-8");
   const config = JSON.parse(rawData);
+  // Retrieve peer address for the current chain ID
+  const chainId = hre.network.config.chainId;
+  if (!chainId) {
+    throw new Error(`Failed to fetch chainId!`);
+  } else {
+    console.log(`Received chainid: ${chainId}`);
+  }
+
+  // Get the contract address for the chain
+  const peer = config.peers.find((peer: Peer) => peer.chainId === chainId);
+  if (!peer) {
+    throw new Error(`No peer found for chainId: ${chainId}`);
+  }
+
+  if (!peer.address || !ethers.isAddress(peer.address)) {
+    throw new Error(
+      `Invalid peer address found in equito.json: ${peer.address}`,
+    );
+  } else {
+    console.log(`Peer address at chainid: ${chainId} is ${peer.address}`);
+  }
 
   // Get the contract name from the environment variable
   const contractName = process.env.CONTRACT_NAME;
   if (!contractName) {
     throw new Error("Please set CONTRACT_NAME in your .env file");
   }
-  // Get the contract address from the environment variable
-  const contractAddress = config.user_contract_address;
-  if (!contractAddress || !ethers.isAddress(contractAddress)) {
-    throw new Error("Please set user_contract_address in equito.json file");
-  }
+
   // Dynamically import the contract type
   const { [contractName]: ContractType } = await import(`../typechain`);
 
   // Get the deployed contract instance
   const ContractFactory = await ethers.getContractFactory(contractName);
-  const contract = ContractFactory.attach(contractAddress) as InstanceType<
+  const contract = ContractFactory.attach(peer.address) as InstanceType<
     typeof ContractType
   >;
 
