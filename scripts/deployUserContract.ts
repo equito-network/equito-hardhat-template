@@ -5,7 +5,7 @@ import * as dotenv from "dotenv";
 import * as path from "path";
 import * as fs from "fs";
 import getRouter from "../config/getRouter";
-import { Peer } from "../utils/util";
+import { Peer } from "../utils";
 
 // Load environment variables from .env file
 dotenv.config({ path: path.join(__dirname, "../.env") });

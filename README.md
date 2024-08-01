@@ -94,8 +94,6 @@ Update the configuration file `equito.json` in the `config` directory with the p
 }
 ```
 
-`user_contract_address` this will store the address of your deployed contract. This is updated by the deployment script automatically at the end of the process. If you already have deployed the contract and want to set peers (say) then update this with the address of your contract.
-
 ### Usage
 
 This Hardhat project provides essential commands to streamline and enhance your development workflow. Write your contract inheriting `EquitoApp.sol` and place it in the contracts directory. The name of the contract should be the same as the name `CONTRACT_NAME` specified in the `.env` file.

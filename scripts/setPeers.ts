@@ -3,8 +3,7 @@ import * as dotenv from "dotenv";
 import * as path from "path";
 import * as fs from "fs";
 import hre from "hardhat";
-import { addressToBytes64 } from "../utils/bytes64";
-import { Peer } from "../utils/util";
+import { Peer, addressToBytes64 } from "../utils";
 // Load env
 dotenv.config({ path: path.join(__dirname, "../.env") });
 
