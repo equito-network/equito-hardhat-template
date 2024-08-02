@@ -3,7 +3,8 @@ import * as dotenv from "dotenv";
 import * as path from "path";
 import * as fs from "fs";
 import hre from "hardhat";
-import { Peer, addressToBytes64 } from "../utils";
+import { Peer, Bytes64Struct } from "../utils";
+import { chainSelector } from "../config";
 // Load env
 dotenv.config({ path: path.join(__dirname, "../.env") });
 
@@ -17,17 +18,17 @@ async function main() {
   const rawData = fs.readFileSync(configPath, "utf-8");
   const config = JSON.parse(rawData);
   // Retrieve peer address for the current chain ID
-  const chainId = hre.network.config.chainId;
-  if (!chainId) {
-    throw new Error(`Failed to fetch chainId!`);
+  const chain = hre.network.name;
+  if (!chain) {
+    throw new Error(`Failed to fetch chain name!`);
   } else {
-    console.log(`Received chainid: ${chainId}`);
+    console.log(`Connected to chain: ${chain}`);
   }
 
   // Get the contract address for the chain
-  const peer = config.peers.find((peer: Peer) => peer.chainId === chainId);
+  const peer = config.peers.find((peer: Peer) => peer.chain === chain);
   if (!peer) {
-    throw new Error(`No peer found for chainId: ${chainId}`);
+    throw new Error(`No peer found for chain: ${chain}`);
   }
 
   if (!peer.address || !ethers.isAddress(peer.address)) {
@@ -35,7 +36,7 @@ async function main() {
       `Invalid peer address found in equito.json: ${peer.address}`,
     );
   } else {
-    console.log(`Peer address at chainid: ${chainId} is ${peer.address}`);
+    console.log(`Peer address at chain: ${chain} is ${peer.address}`);
   }
 
   // Get the contract name from the environment variable
@@ -54,22 +55,26 @@ async function main() {
   >;
 
   // prepare chainIds and peers arguments for the contract call
-  const chainIds = config.peers.map((peer: Peer) => peer.chainId);
+  const chainSelectors = config.peers.map((peer: Peer) =>
+    chainSelector(peer.chain),
+  );
   const peerAddresses = config.peers.map((peer: Peer) => {
     if (!peer.address || !ethers.isAddress(peer.address)) {
       throw new Error(`Invalid peer address: ${peer.address}.`);
     }
-    return addressToBytes64(peer.address);
+    return Bytes64Struct.fromEvmAddress(peer.address);
   });
 
   console.log("setting peers:", config.peers);
 
-  // Ensure the lengths of chainIds and peerAddresses match
-  if (chainIds.length !== peerAddresses.length) {
-    throw new Error("The lengths of chainIds and peerAddresses do not match");
+  // Ensure the lengths of chainSelectors and peerAddresses match
+  if (chainSelectors.length !== peerAddresses.length) {
+    throw new Error(
+      "The lengths of chainSelectors and peerAddresses do not match",
+    );
   }
   // Call contract to set peers
-  await contract.setPeers(chainIds, peerAddresses);
+  await contract.setPeers(chainSelectors, peerAddresses);
 
   console.log("Peers set successfully");
   process.exit(0);

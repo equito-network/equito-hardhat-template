@@ -21,7 +21,7 @@ const chainSelectors = JSON.parse(
 ) as Record<string, string[]>;
 
 // Function to get the chain selector value for a given chain name
-function chainSelector(name: string): number {
+export function chainSelector(name: string): number {
   const lowerCaseName = name.toLowerCase();
 
   for (const [selector, names] of Object.entries(chainSelectors)) {
@@ -30,7 +30,7 @@ function chainSelector(name: string): number {
     }
   }
 
-  throw new Error(`Invalid Chain Name: ${name}`);
+  throw new Error(`Invalid or un-supported Chain Name: ${name}`);
 }
 
 // Function to get the router address for a given chain name

@@ -28,6 +28,7 @@
     "typechain": "^8.3.2"
   },
   "dependencies": {
-    "@equito-sdk/client": "^0.1.4"
+    "@equito-sdk/client": "^0.1.4",
+    "@equito-sdk/ethers": "^0.1.3"
   }
 }

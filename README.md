@@ -83,11 +83,11 @@ Update the configuration file `equito.json` in the `config` directory with the p
 {
   "peers": [
     {
-      "chainId": 1001,
+      "name": "ethereum sepolia",
       "address": "0x<your-contract-address-here>"
     },
     {
-      "chainId": 1002,
+      "name": "bsc testnet",
       "address": "0x<your-contract-address-here>"
     }
   ]
