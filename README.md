@@ -90,6 +90,25 @@ npm run hardhat:test
 npm run hardhat:typechain
 ```
 
+### Add a new network
+
+To add a new network, you can add an entry in the `hardhat.config.ts` file, under the `networks` object. For example:
+
+```typescript
+const config: HardhatUserConfig = {
+  networks: {
+    // more networks ...
+    bscTestnet: {
+      chainId: 97,
+      url: "https://data-seed-prebsc-1-s1.binance.org:8545/",
+      accounts:
+        process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
+    },
+  }
+  // more configurations ...
+};
+```
+
 ### Deploy contracts
 
 The following command will deploy the contract with the router address corresponding to the chain, fetched from Equito.
@@ -98,11 +117,9 @@ The following command will deploy the contract with the router address correspon
 npm run hardhat:deploy -- --network localhost
 ```
 
-You can add a new network in the `hardhat.config.ts` file.
-
 ### Set peers
 
-It is crucial to set the peers after deployment of your contract. The following command will set the peers of your Dapp deployed on different chains. Before running this command, make sure that the configuration file `equito.json` is updated with the correct networks and peer addresses. For example:
+It is crucial to set the peers after deployment of your contract. Before running the command, make sure that the configuration file `equito.json` is updated with the correct networks and peer addresses. For example:
 
 ```json
 {
@@ -118,6 +135,8 @@ It is crucial to set the peers after deployment of your contract. The following 
   ]
 }
 ```
+
+To set the peers of your Dapp deployed on different chains, run the following command: 
 
 ```bash
 npm run hardhat:setpeers -- --network localhost
