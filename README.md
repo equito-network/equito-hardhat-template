@@ -4,14 +4,12 @@ Welcome to the Equito Hardhat Template! This project is pre-configured for Equit
 
 ### Project structure
 
-- **contracts/**: Contains your Solidity smart contracts.
-- **test/**: Contains test scripts for contracts.
-- **artifacts/**: Contains compiled contract artifacts.
-- **cache/**: Used by Hardhat for caching.
-- **typechain/**: Contains the generated TypeScript typings for the smart contracts.
-- **typechain-types/**: Contains the common generated TypeScript typings for the smart contracts.
-- **scripts/**: Contains deployment scripts.
-- **lib/**: Additional libraries or dependencies.
+- **lib/**: Equito EVM Contracts and additional libraries or dependencies.
+- **contracts/**: your Solidity smart contracts.
+- **test/**: test scripts for your contracts.
+- **scripts/**: scripts for deployments or interaction with your contracts.
+- **ignition/**: utilities for deploying your contracts.
+- **utils/**: utilities for your scripts or tests.
 
 ### Prerequisites
 
