@@ -14,6 +14,10 @@ const config: HardhatUserConfig = {
       },
     },
   },
+  typechain: {
+    outDir: "typechain",
+    target: "ethers-v6",
+  },
   networks: {
     localhost: {
       url: `http://127.0.0.1:${process.env.RPC_PORT || "8545"}`,
@@ -39,6 +43,8 @@ const config: HardhatUserConfig = {
       "lib/equito/src/ECDSAVerifier.sol",
       "lib/equito/src/Router.sol",
       "lib/equito/test/mock/MockOracle.sol",
+      "lib/equito/test/mock/MockEquitoFees.sol",
+      "lib/equito/test/mock/MockVerifier.sol",
     ],
   },
 };
