@@ -25,12 +25,6 @@ const config: HardhatUserConfig = {
     hardhat: {
       chainId: 31337,
     },
-    bscTestnet: {
-      chainId: 97,
-      url: process.env.BSC_TESTNET_RPC_URL || "",
-      accounts:
-        process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
-    },
   },
   paths: {
     sources: "./contracts",

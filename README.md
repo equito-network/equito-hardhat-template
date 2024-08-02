@@ -66,10 +66,6 @@ EQUITO_RPC_URL=wss://testnet.testequito.live
 # PRIVATE_KEY is used as the contract deployer key.
 PRIVATE_KEY=<your_private_key>
 
-# RPC
-# BSC_TESTNET_RPC_URL is the RPC URL for the Binance Smart Chain Testnet network.
-BSC_TESTNET_RPC_URL=<your_bsc_testnet_url>
-
 # Specify your contract name
 CONTRACT_NAME=<your_contract_name>
 ```
