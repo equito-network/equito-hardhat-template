@@ -33,7 +33,7 @@ Before you begin, ensure you have the following installed:
 
 #### Clone preject repo
 
-Replace your github user id in the following command and run it to clone the newly created repo
+Clone your newly created repo
 
 ```bash
 git clone https://github.com/<github-user-id>/equito-ping-pong-hardhat.git
